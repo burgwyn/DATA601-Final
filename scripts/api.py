@@ -11,6 +11,44 @@ headers = {
     'Content-Type': 'application/json'
 }
 
-response = requests.request('POST', url, headers=headers, data=payload)
+parking_data = {}
 
-print(response.text)
+
+def do_search():
+    response = requests.request('POST', url, headers=headers, data=payload)
+
+    r = response.json()
+
+    data = r['data']
+
+    for d in data:
+        print(d['attributes']['name'])
+
+        if (d['attributes']['name'].startswith('Parking Violations')):
+            parking_data[d['attributes']['name']] = d['links']['self']
+
+    print(r['meta']['stats']['count'])
+
+    if ('next' in r['meta']):
+        page_result(r['meta']['next'])
+
+def page_result(url):
+    response = requests.request('GET', url)
+
+    r = response.json()
+
+    data = r['data']
+
+    for d in data:
+        print(d['attributes']['name'])
+
+        if (d['attributes']['name'].startswith('Parking Violations')):
+            parking_data[d['attributes']['name']] = d['links']['self']
+
+    print(r['meta']['stats']['count'])
+
+    if ('next' in r['meta']):
+        page_result(r['meta']['next'])
+
+do_search()
+print(parking_data)
