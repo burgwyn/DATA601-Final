@@ -1,10 +1,7 @@
 import json
 import requests as req
 
-url = 'https://opendata.arcgis.com/api/v3/search'
-
 payload = {
-    'q': 'Parking Violations Issued in',
     'catalog': {
         'groupIds': 'any(6664e0b92948483ab633b3080d466122)'
     }
@@ -15,7 +12,8 @@ headers = {
 }
 
 
-def do_search():
+def do_search(q, url='https://opendata.arcgis.com/api/v3/search'):
+    payload['q'] = q
     payload_json = json.dumps(payload)
     response = req.request('POST', url, headers=headers, data=payload_json)
     response_data = {}
@@ -40,6 +38,6 @@ def parse_search_response(r, response_data):
         return response_data
 
 
-# parking_data = do_search()
+# parking_data = do_search('Parking Violations Issued in')
 
 # print(parking_data)
