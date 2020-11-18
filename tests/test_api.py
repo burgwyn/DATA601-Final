@@ -38,10 +38,12 @@ class TestApiMethods(unittest.TestCase):
                       body=json.dumps(mock_response),
                       content_type="application/json")
 
-        assert api.page_result("http://localhost/next", {}) == mock_response_data
+        assert api.page_result("http://localhost/next",
+                               {}) == mock_response_data
 
     def test_parse_search_response(self):
-        assert api.parse_search_response(mock_response, {}) == mock_response_data
+        assert api.parse_search_response(mock_response,
+                                         {}) == mock_response_data
 
 
 if __name__ == '__main__':
