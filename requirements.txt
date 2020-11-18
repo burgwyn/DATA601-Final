@@ -1,5 +1,6 @@
 beautifulsoup4
 coverage
+flake8
 requests
 responses
 sure
