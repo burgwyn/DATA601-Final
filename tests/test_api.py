@@ -12,10 +12,13 @@ mock_response = {
                 "links": {"self": "http://localhost/self"},
             }
         ],
-    "meta": { "link": "http://localhost/next" }
+    "meta": {"link": "http://localhost/next"}
 }
 
-mock_response_data = { "Parking Violations in January 2000": "http://localhost/self" }
+mock_response_data = {
+    "Parking Violations in January 2000": "http://localhost/self"
+}
+
 
 class TestApiMethods(unittest.TestCase):
 

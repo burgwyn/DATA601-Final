@@ -17,9 +17,11 @@ def do_search():
     response_data = {}
     return parse_search_response(response.json(), response_data)
 
+
 def page_result(next_url, response_data):
     response = requests.request('GET', next_url)
     return parse_search_response(response.json(), response_data)
+
 
 def parse_search_response(r, response_data):
     data = r['data']
