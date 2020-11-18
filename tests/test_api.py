@@ -24,7 +24,8 @@ class TestApiMethods(unittest.TestCase):
 
     @responses.activate
     def test_so_search(self):
-        responses.add(responses.POST, "https://opendata.arcgis.com/api/v3/search",
+        responses.add(responses.POST,
+                      "https://opendata.arcgis.com/api/v3/search",
                       body=json.dumps(mock_response),
                       content_type="application/json")
 
@@ -32,7 +33,8 @@ class TestApiMethods(unittest.TestCase):
 
     @responses.activate
     def test_page_results(self):
-        responses.add(responses.GET, "http://localhost/next",
+        responses.add(responses.GET,
+                      "http://localhost/next",
                       body=json.dumps(mock_response),
                       content_type="application/json")
 
@@ -40,6 +42,7 @@ class TestApiMethods(unittest.TestCase):
 
     def test_parse_search_response(self):
         assert api.parse_search_response(mock_response, {}) == mock_response_data
+
 
 if __name__ == '__main__':
     unittest.main()
