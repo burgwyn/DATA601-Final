@@ -29,7 +29,7 @@ class TestApiMethods(unittest.TestCase):
                       body=json.dumps(mock_response),
                       content_type="application/json")
 
-        assert api.do_search() == mock_response_data
+        assert api.do_search('Test search') == mock_response_data
 
     @responses.activate
     def test_page_results(self):
