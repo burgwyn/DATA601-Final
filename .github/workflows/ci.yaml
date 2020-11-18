@@ -36,4 +36,4 @@ jobs:
         coverage run -m unittest discover -s tests
     - name: Lint with flake8
       run: |
-        flake8 .
+        flake8 --ignore=E501  .
