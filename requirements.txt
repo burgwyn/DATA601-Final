@@ -3,4 +3,3 @@ flake8
 python-dateutil
 requests
 responses
-sure
