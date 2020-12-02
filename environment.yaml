@@ -1,6 +1,7 @@
 name: burgwyn_data601_final
 dependencies:
   - python=3.8.5
+  - jupyter-lab=2.1.5
   - matplotlib=3.3.2
   - numpy=1.19.2
   - pandas=1.1.3
