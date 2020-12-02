@@ -1,4 +1,4 @@
-#! /bin/bash
+#!/bin/bash
 
 # create the data directory
 mkdir data
