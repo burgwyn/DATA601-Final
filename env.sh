@@ -3,5 +3,5 @@
 # create the data directory
 mkdir data
 
-conda env create -f environment.yaml
+conda env create -f environment.yaml --name burgwyn_data601_final
 conda activate burgwyn_data601_final
