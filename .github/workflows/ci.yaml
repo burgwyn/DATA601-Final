@@ -19,7 +19,7 @@ jobs:
         python-version: '3.8'
     - name: Install dependencies
       run: |
-        $CONDA/bin/conda env update --file environment.yml --name burgwyn_data601_final
+        $CONDA/bin/conda env update --file environment.yaml --name base
     - name: Test
       run: |
         $CONDA/bin/coverage run -m unittest discover -s tests
