@@ -27,10 +27,14 @@ def page_result(next_url, response_data):
 
 def parse_search_response(r, response_data):
     data = r['data']
+    q = r['meta']['queryParameters']['q']
     for d in data:
-        print(d['attributes']['name'])
-        if d['attributes']['name'].startswith('Parking Violations'):
-            response_data[d['attributes']['name']] = d['links']['self']
+        name = d['attributes']['name']
+        print(name)
+        if name.startswith(q):
+            month_year = name.replace(q, '').strip()
+            response_data[month_year] =\
+                format_csv_url(d['links']['self'])
 
     if 'next' in r['meta']:
         return page_result(r['meta']['next'], response_data)
@@ -38,6 +42,10 @@ def parse_search_response(r, response_data):
         return response_data
 
 
-# parking_data = do_search('Parking Violations Issued in')
-
-# print(parking_data)
+def format_csv_url(url):
+    # convert
+    # https://opendata.arcgis.com/api/v3/datasets/7e688a52e65d49c0beef48289860f465_0
+    # to
+    # https://opendata.arcgis.com/datasets/ef6a77dd0bf6448ca8a8cb15f114b15e_7.csv
+    csv_url = url.replace('/api/v3', '')
+    return csv_url + '.csv'
