@@ -46,8 +46,8 @@ class TestApiMethods(unittest.TestCase):
                                          {}) == mock_response_data
 
     def test_format_csv_url(self):
-        url = 'https://opendata.arcgis.com/api/v3/datasets/f3e9e7239fb54f19919a718307eefbbe_9' # noqa: E501
-        expected = 'https://opendata.arcgis.com/datasets/f3e9e7239fb54f19919a718307eefbbe_9.csv' # noqa: E501
+        url = 'https://opendata.arcgis.com/api/v3/datasets/f3e9e7239fb54f19919a718307eefbbe_9'  # noqa: E501
+        expected = 'https://opendata.arcgis.com/datasets/f3e9e7239fb54f19919a718307eefbbe_9.csv'  # noqa: E501
         assert api.format_csv_url(url) == expected
 
 
