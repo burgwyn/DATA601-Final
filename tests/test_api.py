@@ -22,7 +22,11 @@ mock_response = {
 }
 
 mock_response_data = {
-    "Parking Violations in January 2000": "http://localhost/self.csv"
+    "Parking Violations in January 2000": "http://localhost/self"
+}
+
+mock_formatted_data = {
+    "January 2000": "http://localhost/self.csv"
 }
 
 
@@ -49,7 +53,7 @@ class TestApiMethods(unittest.TestCase):
 
     def test_parse_search_response(self):
         assert api.parse_search_response(mock_response,
-                                         {}) == mock_response_data
+                                         {}) == mock_formatted_data
 
     def test_format_csv_url(self):
         url = 'https://opendata.arcgis.com/api/v3/datasets/f3e9e7239fb54f19919a718307eefbbe_9'  # noqa: E501

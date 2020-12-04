@@ -27,11 +27,13 @@ def page_result(next_url, response_data):
 
 def parse_search_response(r, response_data):
     data = r['data']
+    name = d['attributes']['name']
     q = r['meta']['queryParameters']['q']
     for d in data:
-        print(d['attributes']['name'])
-        if d['attributes']['name'].startswith(q):
-            response_data[d['attributes']['name']] =\
+        print(name)
+        if name.startswith(q):
+            month_year = name.replace(q, '').strip()
+            response_data[month_year] =\
                 format_csv_url(d['links']['self'])
 
     if 'next' in r['meta']:
