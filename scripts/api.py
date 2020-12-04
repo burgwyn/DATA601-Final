@@ -27,9 +27,9 @@ def page_result(next_url, response_data):
 
 def parse_search_response(r, response_data):
     data = r['data']
-    name = r['attributes']['name']
     q = r['meta']['queryParameters']['q']
     for d in data:
+        name = d['attributes']['name']
         print(name)
         if name.startswith(q):
             month_year = name.replace(q, '').strip()
