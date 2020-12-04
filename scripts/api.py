@@ -27,7 +27,7 @@ def page_result(next_url, response_data):
 
 def parse_search_response(r, response_data):
     data = r['data']
-    name = d['attributes']['name']
+    name = r['attributes']['name']
     q = r['meta']['queryParameters']['q']
     for d in data:
         print(name)
