@@ -30,7 +30,8 @@ def parse_search_response(r, response_data):
     for d in data:
         print(d['attributes']['name'])
         if d['attributes']['name'].startswith('Parking Violations'):
-            response_data[d['attributes']['name']] = format_csv_url(d['links']['self'])
+            response_data[d['attributes']['name']] =\
+                format_csv_url(d['links']['self'])
 
     if 'next' in r['meta']:
         return page_result(r['meta']['next'], response_data)
