@@ -18,6 +18,39 @@ Parking tickets are an expensive nuisance, an unexpected expense often totaling 
 
 ## Data
 
+This effort makes use of publicly available [parking violation data](https://opendata.dc.gov/datasets/parking-violations-issued-in-august-2018) published by the city of DC.
+
+| Column Name | Type |
+|---|---|
+| DISPOSITION_CODE | Number |
+| DISPOSITION_DATE | Date or Time |
+| DISPOSITION_DESC | Text |
+| DISPOSITION_TYPE | Text |
+| FINE_AMOUNT | Number |
+| GIS_LAST_MOD_DTTM | Date or Time |
+| ISSUE_DATE | Date or Time |
+| ISSUE_TIME | Text |
+| ISSUING_AGENCY_CODE | Number |
+| ISSUING_AGENCY_NAME | Text |
+| ISSUING_AGENCY_SHORT | Text |
+| LATITUDE | Number |
+| LOCATION | Text |
+| LONGITUDE | Number |
+| MAR_ID | Number |
+| MULTI_OWNER_NUMBER | Text |
+| OBJECTID | Unique ID |
+| PENALTY_1 | Number | 
+| PENALTY_2 | Number |
+| PENALTY_3 | Number |
+| PENALTY_4 | Number |
+| PENALTY_5 | Number |
+| PLATE_STATE | Text |
+| TOTAL_PAID | Number |
+| VEHICLE_TYPE | Text |
+| VIOLATION_CODE | Text |
+| VIOLATION_PROC_DESC | Text |
+| XCOORD | Number |
+| YCOORD | Number |
 
 ## Table of Contents
 
