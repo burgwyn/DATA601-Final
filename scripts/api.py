@@ -27,9 +27,10 @@ def page_result(next_url, response_data):
 
 def parse_search_response(r, response_data):
     data = r['data']
+    q = r['meta']['queryParameters']['q']
     for d in data:
         print(d['attributes']['name'])
-        if d['attributes']['name'].startswith('Parking Violations'):
+        if d['attributes']['name'].startswith(q):
             response_data[d['attributes']['name']] =\
                 format_csv_url(d['links']['self'])
 

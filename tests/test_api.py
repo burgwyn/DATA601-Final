@@ -12,7 +12,13 @@ mock_response = {
                 "links": {"self": "http://localhost/self"},
             }
         ],
-    "meta": {"link": "http://localhost/next"}
+    "meta": {
+        "link": "http://localhost/next",
+        "queryParameters":
+            {
+                "q": "Parking Violations in"
+            }
+        }
 }
 
 mock_response_data = {
