@@ -46,8 +46,10 @@ class TestApiMethods(unittest.TestCase):
                                          {}) == mock_response_data
 
     def test_format_csv_url(self):
-        assert api.format_csv_url('https://opendata.arcgis.com/api/v3/datasets/f3e9e7239fb54f19919a718307eefbbe_9') ==\
-               'https://opendata.arcgis.com/datasets/f3e9e7239fb54f19919a718307eefbbe_9.csv'
+        url = 'https://opendata.arcgis.com/api/v3/datasets/f3e9e7239fb54f19919a718307eefbbe_9'
+        expected = 'https://opendata.arcgis.com/datasets/f3e9e7239fb54f19919a718307eefbbe_9.csv'
+        assert api.format_csv_url(url) == expected
+
 
 
 if __name__ == '__main__':
