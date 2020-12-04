@@ -38,6 +38,8 @@ def parse_search_response(r, response_data):
         return response_data
 
 
-# parking_data = do_search('Parking Violations Issued in')
-
-# print(parking_data)
+def format_csv_url(url):
+    # convert https://opendata.arcgis.com/api/v3/datasets/7e688a52e65d49c0beef48289860f465_0
+    # to https://opendata.arcgis.com/datasets/ef6a77dd0bf6448ca8a8cb15f114b15e_7.csv
+    csv_url = url.replace('/api/v3', '')
+    return csv_url + '.csv'
