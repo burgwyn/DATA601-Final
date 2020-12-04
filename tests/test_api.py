@@ -16,7 +16,7 @@ mock_response = {
 }
 
 mock_response_data = {
-    "Parking Violations in January 2000": "http://localhost/self"
+    "Parking Violations in January 2000": "http://localhost/self.csv"
 }
 
 
