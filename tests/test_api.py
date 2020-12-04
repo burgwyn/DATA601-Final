@@ -51,6 +51,5 @@ class TestApiMethods(unittest.TestCase):
         assert api.format_csv_url(url) == expected
 
 
-
 if __name__ == '__main__':
     unittest.main()
