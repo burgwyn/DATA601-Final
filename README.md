@@ -118,3 +118,4 @@ Libraries:
 | python-dateutil | 2.8.1 |
 | requests | 2.24.0 |
 | responses | 0.12.1 |
+| scikit-learn | 0.23.2 |
