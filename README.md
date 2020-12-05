@@ -88,7 +88,7 @@ Execute the shell script `env.sh` to build the project environment and install t
 ```shell script
 # make script executable
 chmod +x ./env.sh
-./env.sh
+source ./env.sh
 ```
 
 The shell script will build a `data` directory and create a conda environment `burgwyn_data601_final`
