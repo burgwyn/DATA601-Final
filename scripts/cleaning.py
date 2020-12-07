@@ -7,11 +7,14 @@ from utils import format_date, format_time
 parking_violations = pd.read_csv(
     'data/sample/Parking_Violations_Issued_in_August_2018.csv')
 
+
 def clean_data(parking_violations):
 
     # drop null columns
-    parking_violations.drop(['VEHICLE_TYPE', 'PENALTY_1', 'PENALTY_2', 'PENALTY_3',
-                             'PENALTY_4', 'PENALTY_5'], axis=1, inplace=True)
+    parking_violations.drop(['VEHICLE_TYPE', 'PENALTY_1',
+                             'PENALTY_2', 'PENALTY_3',
+                             'PENALTY_4', 'PENALTY_5'],
+                            axis=1, inplace=True)
 
     # drop disposition columns
     parking_violations.drop(['DISPOSITION_TYPE', 'DISPOSITION_DESC',
@@ -29,11 +32,11 @@ def clean_data(parking_violations):
     parking_violations.drop(['XCOORD', 'YCOORD',
                              'MAR_ID', 'OBJECTID'], axis=1, inplace=True)
 
-
     parking_violations.dropna(subset=['ISSUE_TIME'], inplace=True)
 
     parking_violations['FORMAT_DATE'] =\
-        parking_violations.apply(lambda x: format_date(x['ISSUE_DATE']), axis=1)
+        parking_violations.apply(lambda x:
+                                 format_date(x['ISSUE_DATE']), axis=1)
 
     parking_violations['DAY_OF_MONTH'] =\
         parking_violations.apply(lambda x: x['FORMAT_DATE'].day, axis=1)
@@ -42,7 +45,8 @@ def clean_data(parking_violations):
         parking_violations.apply(lambda x: x['FORMAT_DATE'].month, axis=1)
 
     parking_violations['FORMAT_TIME'] =\
-        parking_violations.apply(lambda x: format_time(x['ISSUE_TIME']), axis=1)
+        parking_violations.apply(lambda x:
+                                 format_time(x['ISSUE_TIME']), axis=1)
 
     parking_violations['HOUR'] =\
         parking_violations.apply(lambda x: x['FORMAT_TIME'].hour, axis=1)
@@ -53,7 +57,8 @@ def clean_data(parking_violations):
 
     # drop rows with nulls in meaningful dimensions
     parking_violations.dropna(subset=['ISSUING_AGENCY_CODE',
-                                      'LATITUDE', 'LONGITUDE'], inplace=True)
+                                      'LATITUDE', 'LONGITUDE'],
+                              inplace=True)
 
     # cast ISSUING_AGENCY_CODE to int
     parking_violations['ISSUING_AGENCY_CODE'] =\

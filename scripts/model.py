@@ -2,7 +2,7 @@
 import pandas as pd
 import numpy as np
 
-from utils import format_date, format_time, display_scores
+from utils import display_scores
 
 features = ['LATITUDE', 'LONGITUDE', 'DAY_OF_MONTH', 'HOUR']
 

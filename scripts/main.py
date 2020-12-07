@@ -35,4 +35,3 @@ for key in parking_data.keys():
 
         cleaned = clean_data(data)
         cleaned.to_csv(f'data/cleaned/{file_name}.csv', index=False)
-
