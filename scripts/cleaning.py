@@ -5,14 +5,17 @@ import numpy as np
 from utils import format_date, format_time, display_scores
 
 # load dataset
-parking_violations = pd.read_csv('data/sample/Parking_Violations_Issued_in_August_2018.csv')
+parking_violations = pd.read_csv(
+    'data/sample/Parking_Violations_Issued_in_August_2018.csv')
 
 
 # drop null columns
-parking_violations.drop(['VEHICLE_TYPE', 'PENALTY_1', 'PENALTY_2', 'PENALTY_3', 'PENALTY_4', 'PENALTY_5'], axis=1, inplace=True)
+parking_violations.drop(['VEHICLE_TYPE', 'PENALTY_1', 'PENALTY_2',
+                         'PENALTY_3', 'PENALTY_4', 'PENALTY_5'], axis=1, inplace=True)
 
 # drop disposition columns
-parking_violations.drop(['DISPOSITION_TYPE', 'DISPOSITION_DESC', 'DISPOSITION_DATE'], axis=1, inplace=True)
+parking_violations.drop(['DISPOSITION_TYPE',
+                         'DISPOSITION_DESC', 'DISPOSITION_DATE'], axis=1, inplace=True)
 
 parking_violations.drop('MULTI_OWNER_NUMBER', axis=1, inplace=True)
 
@@ -63,7 +66,7 @@ from sklearn.preprocessing import StandardScaler
 X = StandardScaler().fit_transform(X)
 
 from sklearn.model_selection import train_test_split
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state = 42, stratify = y)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42, stratify=y)
 
 from sklearn.linear_model import LogisticRegression
 
@@ -125,22 +128,22 @@ print('Score - Test: {:f}'.format(mlp_clf.score(X_test, y_test)))
 from sklearn.model_selection import cross_val_score
 
 log_reg_scores = cross_val_score(log_reg, X, y,
-                         scoring="neg_mean_squared_error", cv=10)
+                                 scoring="neg_mean_squared_error", cv=10)
 log_reg_rmse_scores = np.sqrt(-log_reg_scores)
 display_scores('Logistic Regression', log_reg_rmse_scores)
 
 passive_aggressive_clf_scores = cross_val_score(passive_aggressive_clf, X, y,
-                         scoring="neg_mean_squared_error", cv=10)
+                                                scoring="neg_mean_squared_error", cv=10)
 passive_aggressive_clf_rmse_scores = np.sqrt(-passive_aggressive_clf_scores)
 display_scores('Passive Aggressive', passive_aggressive_clf_rmse_scores)
 
 tree_clf_scores = cross_val_score(tree_clf, X, y,
-                         scoring="neg_mean_squared_error", cv=10)
+                                  scoring="neg_mean_squared_error", cv=10)
 tree_clf_rmse_scores = np.sqrt(-tree_clf_scores)
 display_scores('Decision Tree', tree_clf_rmse_scores)
 
 ridge_clf_scores = cross_val_score(ridge_clf, X, y,
-                         scoring="neg_mean_squared_error", cv=10)
+                                   scoring="neg_mean_squared_error", cv=10)
 ridge_clf_rmse_scores = np.sqrt(-ridge_clf_scores)
 display_scores('Ridge', ridge_clf_rmse_scores)
 
@@ -162,15 +165,17 @@ display_scores('Ridge', ridge_clf_rmse_scores)
 
 from sklearn.model_selection import GridSearchCV
 
-param_grid = {'C':np.logspace(-3,3,7), 'penalty': ['l1','l2','elasticnet','none'], 'solver': ['newton-cg','lbfgs','liblinear','sag','saga']}
+param_grid = {'C':np.logspace(-3,3,7),
+              'penalty': ['l1', 'l2', 'elasticnet', 'none'],
+              'solver': ['newton-cg', 'lbfgs', 'liblinear', 'sag', 'saga']}
 
 # train across 5 folds, that's a total of (12+6)*5=90 rounds of training
 grid_search = GridSearchCV(LogisticRegression(), param_grid, cv=5,
                            scoring='neg_mean_squared_error', return_train_score=True)
 grid_search.fit(X_train, y_train)
 
-print('best parameters',grid_search.best_params_)
-print('best score',grid_search.best_score_)
+print('best parameters', grid_search.best_params_)
+print('best score', grid_search.best_score_)
 
 from sklearn.metrics import mean_squared_error
 
