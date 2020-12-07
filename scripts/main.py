@@ -1,7 +1,9 @@
 import os.path
 import json
 import urllib.request
+import pandas as pd
 from api import do_search
+from cleaning import clean_data
 
 parking_data = []
 config_path = os.path.join('data', 'config', 'parking_data.json')
@@ -25,3 +27,12 @@ for key in parking_data.keys():
     date_parts = key.split(' ')
     if not os.path.exists(file_path) and date_parts[1] == '2018':
         urllib.request.urlretrieve(url, file_path)
+
+    if date_parts[1] == '2018':
+        data = []
+        with open(file_path, 'r') as file:
+            data = pd.read_csv(file_path)
+
+        cleaned = clean_data(data)
+        cleaned.to_csv(f'data/cleaned/{file_name}.csv', index=False)
+
