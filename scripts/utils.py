@@ -8,6 +8,7 @@ def format_date(date_str):
 def format_time(time_str):
     return parse(time_str).time()
 
+
 def display_scores(name, scores):
     print(name)
     print('Mean:', scores.mean())
