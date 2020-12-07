@@ -53,7 +53,8 @@ def clean_data(parking_violations):
 
     parking_violations['DISPOSITION_RESULT'] =\
         parking_violations.apply(lambda x:
-                                 1 if (x['DISPOSITION_CODE'] > 0) else 0, axis=1)
+                                 1 if (x['DISPOSITION_CODE'] > 0) else 0,
+                                 axis=1)
 
     # drop rows with nulls in meaningful dimensions
     parking_violations.dropna(subset=['ISSUING_AGENCY_CODE',
