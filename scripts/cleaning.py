@@ -145,9 +145,9 @@ log_reg_scores = cross_val_score(log_reg, X, y,
 log_reg_rmse_scores = np.sqrt(-log_reg_scores)
 display_scores('Logistic Regression', log_reg_rmse_scores)
 
-passive_aggressive_clf_scores = cross_val_score(passive_aggressive_clf,
-                                                X, y, cv=10,
-                                                scoring="neg_mean_squared_error")
+passive_aggressive_clf_scores =\
+    cross_val_score(passive_aggressive_clf, X, y, cv=10,
+                    scoring="neg_mean_squared_error")
 passive_aggressive_clf_rmse_scores = np.sqrt(-passive_aggressive_clf_scores)
 display_scores('Passive Aggressive', passive_aggressive_clf_rmse_scores)
 
