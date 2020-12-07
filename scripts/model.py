@@ -1,5 +1,5 @@
 # load pandas for data analysis
-import pandas as pd
+import pandas as pd  # noqa E401
 import numpy as np
 
 from utils import display_scores
@@ -7,13 +7,13 @@ from utils import display_scores
 features = ['LATITUDE', 'LONGITUDE', 'DAY_OF_MONTH', 'HOUR']
 
 # establish data for classification
-X = parking_violations[features]
-y = parking_violations['DISPOSITION_RESULT']
+X = parking_violations[features]  # noqa F821
+y = parking_violations['DISPOSITION_RESULT']  # noqa F821
 
 from sklearn.preprocessing import StandardScaler  # noqa E402
 X = StandardScaler().fit_transform(X)
 
-from sklearn.model_selection import train_test_split
+from sklearn.model_selection import train_test_split  # noqa E402
 X_train, X_test, y_train, y_test =\
     train_test_split(X, y, test_size=0.2, random_state=42, stratify=y)
 
