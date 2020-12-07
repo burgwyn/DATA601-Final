@@ -45,7 +45,8 @@ parking_violations['HOUR'] =\
     parking_violations.apply(lambda x: x['FORMAT_TIME'].hour, axis=1)
 
 parking_violations['DISPOSITION_RESULT'] =\
-    parking_violations.apply(lambda x: 1 if (x['DISPOSITION_CODE'] > 0) else 0, axis=1)
+    parking_violations.apply(lambda x:
+                             1 if (x['DISPOSITION_CODE'] > 0) else 0, axis=1)
 
 # drop rows with nulls in meaningful dimensions
 parking_violations.dropna(subset=['ISSUING_AGENCY_CODE',
@@ -57,11 +58,13 @@ parking_violations['ISSUING_AGENCY_CODE'] =\
 
 # cast FINE_AMOUNT to int
 parking_violations['FINE_AMOUNT'].fillna(0, inplace=True)
-parking_violations['FINE_AMOUNT'] = parking_violations['FINE_AMOUNT'].astype('int')
+parking_violations['FINE_AMOUNT'] =\
+    parking_violations['FINE_AMOUNT'].astype('int')
 
 # cast DISPOSITION_CODE to int
 parking_violations['DISPOSITION_CODE'].fillna(0, inplace=True)
-parking_violations['DISPOSITION_CODE'] = parking_violations['DISPOSITION_CODE'].astype('int')
+parking_violations['DISPOSITION_CODE'] =\
+    parking_violations['DISPOSITION_CODE'].astype('int')
 
 
 features = ['LATITUDE', 'LONGITUDE', 'DAY_OF_MONTH', 'HOUR']
@@ -79,7 +82,7 @@ X_train, X_test, y_train, y_test =\
 
 from sklearn.linear_model import LogisticRegression
 
-log_reg = LogisticRegression(penalty ='none', random_state=42)
+log_reg = LogisticRegression(penalty='none', random_state=42)
 log_reg.fit(X_train, y_train)
 
 print('Score - Training: {:f}'.format(log_reg.score(X_train, y_train)))
@@ -90,8 +93,10 @@ from sklearn.linear_model import PassiveAggressiveClassifier
 passive_aggressive_clf = PassiveAggressiveClassifier(random_state=42)
 passive_aggressive_clf.fit(X_train, y_train)
 
-print('Score - Training: {:f}'.format(passive_aggressive_clf.score(X_train, y_train)))
-print('Score - Test: {:f}'.format(passive_aggressive_clf.score(X_test, y_test)))
+print('Score - Training: {:f}'.format(passive_aggressive_clf.score(
+    X_train, y_train)))
+print('Score - Test: {:f}'.format(passive_aggressive_clf.score(
+    X_test, y_test)))
 
 from sklearn.tree import DecisionTreeClassifier
 
@@ -133,7 +138,6 @@ print('Score - Training: {:f}'.format(mlp_clf.score(X_train, y_train)))
 print('Score - Test: {:f}'.format(mlp_clf.score(X_test, y_test)))
 
 
-
 from sklearn.model_selection import cross_val_score
 
 log_reg_scores = cross_val_score(log_reg, X, y,
@@ -141,8 +145,9 @@ log_reg_scores = cross_val_score(log_reg, X, y,
 log_reg_rmse_scores = np.sqrt(-log_reg_scores)
 display_scores('Logistic Regression', log_reg_rmse_scores)
 
-passive_aggressive_clf_scores = cross_val_score(passive_aggressive_clf, X, y,
-                                                scoring="neg_mean_squared_error", cv=10)
+passive_aggressive_clf_scores = cross_val_score(passive_aggressive_clf,
+                                                X, y, cv=10,
+                                                scoring="neg_mean_squared_error")
 passive_aggressive_clf_rmse_scores = np.sqrt(-passive_aggressive_clf_scores)
 display_scores('Passive Aggressive', passive_aggressive_clf_rmse_scores)
 
@@ -156,31 +161,32 @@ ridge_clf_scores = cross_val_score(ridge_clf, X, y,
 ridge_clf_rmse_scores = np.sqrt(-ridge_clf_scores)
 display_scores('Ridge', ridge_clf_rmse_scores)
 
-#forest_clf_scores = cross_val_score(forest_clf, X, y,
-#                         scoring="neg_mean_squared_error", cv=10)
-#forest_clf_rmse_scores = np.sqrt(-forest_clf_scores)
-#display_scores('Forest', forest_clf_rmse_scores)
+forest_clf_scores = cross_val_score(forest_clf, X, y,
+                                    scoring="neg_mean_squared_error", cv=10)
+forest_clf_rmse_scores = np.sqrt(-forest_clf_scores)
+display_scores('Forest', forest_clf_rmse_scores)
 
-#ada_clf_scores = cross_val_score(ada_clf, X, y,
-#                         scoring="neg_mean_squared_error", cv=10)
-#ada_clf_rmse_scores = np.sqrt(-ada_clf_scores)
-#display_scores('AdaBoost', ada_clf_rmse_scores)
+ada_clf_scores = cross_val_score(ada_clf, X, y,
+                                 scoring="neg_mean_squared_error", cv=10)
+ada_clf_rmse_scores = np.sqrt(-ada_clf_scores)
+display_scores('AdaBoost', ada_clf_rmse_scores)
 
-#mlp_clf_scores = cross_val_score(mlp_clf, X, y,
-#                         scoring="neg_mean_squared_error", cv=10)
-#mpl_clf_rmse_scores = np.sqrt(-mlp_clf_scores)
-#display_scores('MLP', mpl_clf_rmse_scores)
+mlp_clf_scores = cross_val_score(mlp_clf, X, y,
+                                 scoring="neg_mean_squared_error", cv=10)
+mpl_clf_rmse_scores = np.sqrt(-mlp_clf_scores)
+display_scores('MLP', mpl_clf_rmse_scores)
 
 
 from sklearn.model_selection import GridSearchCV
 
-param_grid = {'C':np.logspace(-3,3,7),
+param_grid = {'C': np.logspace(-3, 3, 7),
               'penalty': ['l1', 'l2', 'elasticnet', 'none'],
               'solver': ['newton-cg', 'lbfgs', 'liblinear', 'sag', 'saga']}
 
-# train across 5 folds, that's a total of (12+6)*5=90 rounds of training
-grid_search = GridSearchCV(LogisticRegression(), param_grid, cv=5,
-                           scoring='neg_mean_squared_error', return_train_score=True)
+grid_search = GridSearchCV(LogisticRegression(),
+                           param_grid, cv=5,
+                           scoring='neg_mean_squared_error',
+                           return_train_score=True)
 grid_search.fit(X_train, y_train)
 
 print('best parameters', grid_search.best_params_)
