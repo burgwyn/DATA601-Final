@@ -9,6 +9,7 @@
 - Determine if geographic factors have any impact on parking violations
 - Determine if day and/or time have any impact on parking violations
 - Create a model that scores 85% or better
+- Incorporate unit tests and linting through GitHub Actions in an effort to mimic a professional setting
 
 ## Motivation & Background
 
@@ -95,7 +96,7 @@ The final solution should look like this
 ├── env.sh
 ├── environment.yaml
 ├── notebooks
-│   ├── Cleaning,\ Preparation\ and\ Modeling.ipynb
+│   ├── Cleaning\ and\ Preparation.ipynb
 │   ├── EDA.ipynb
 │   ├── Getting\ Data.ipynb
 │   ├── Models.ipynb
