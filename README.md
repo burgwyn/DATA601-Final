@@ -2,6 +2,9 @@
 
 ## Overview
 
+Explore parking violation data from Washington, DC and build a classifier
+
+<img src="https://github.com/burgwyn/DATA601-Final/blob/main/images/map-plot.png" alt="Plot of Washington, DC" />
 
 ## Goals
 
@@ -78,6 +81,7 @@ The final solution should look like this
 │   │   └── parking_data.json
 │   ├── final
 │   │   └── all_cleaned.csv
+│   │   └── final_model.pkl
 │   ├── incoming
 │   │   ├── April_2018.csv
 │   │   ├── August_2018.csv
