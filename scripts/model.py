@@ -4,6 +4,9 @@ import numpy as np
 
 from utils import display_scores
 
+# load dataset
+parking_violations = pd.read_csv('data/final/all_cleaned.csv')
+
 features = ['LATITUDE', 'LONGITUDE', 'MONTH', 'DAY_OF_MONTH', 'HOUR']
 
 # establish data for classification
@@ -117,17 +120,17 @@ display_scores('MLP', mpl_clf_rmse_scores)
 from sklearn.model_selection import GridSearchCV  # noqa E402
 
 param_grid = {'C': np.logspace(-3, 3, 7),
-              'penalty': ['l1', 'l2', 'elasticnet', 'none'],
-              'solver': ['newton-cg', 'lbfgs', 'liblinear', 'sag', 'saga']}
+              'penalty': ['l2', 'none'],
+              'solver': ['newton-cg', 'lbfgs', 'sag', 'saga']}
 
 grid_search = GridSearchCV(LogisticRegression(),
-                           param_grid, cv=5,
+                           param_grid,
                            scoring='neg_mean_squared_error',
                            return_train_score=True)
 grid_search.fit(X_train, y_train)
 
-print('best parameters', grid_search.best_params_)
-print('best score', grid_search.best_score_)
+print('Best parameters', grid_search.best_params_)
+print('Best score', grid_search.best_score_)
 
 from sklearn.metrics import mean_squared_error  # noqa E402
 
@@ -137,4 +140,4 @@ final_predictions = final_model.predict(X_test)
 
 final_mse = mean_squared_error(y_test, final_predictions)
 final_rmse = np.sqrt(final_mse)
-print(final_rmse)
+print('Final score', final_rmse)
