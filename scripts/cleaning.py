@@ -32,6 +32,9 @@ def clean_data(parking_violations):
     parking_violations.drop(['XCOORD', 'YCOORD',
                              'MAR_ID', 'OBJECTID'], axis=1, inplace=True)
 
+    parking_violations.drop(['ISSUING_AGENCY_NAME', 'LOCATION'],
+                            axis=1, inplace=True)
+
     parking_violations.dropna(subset=['ISSUE_TIME'], inplace=True)
 
     parking_violations['FORMAT_DATE'] =\

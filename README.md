@@ -9,6 +9,7 @@
 - Determine if geographic factors have any impact on parking violations
 - Determine if day and/or time have any impact on parking violations
 - Create a model that scores 85% or better
+- Incorporate unit tests and linting through GitHub Actions in an effort to mimic a professional setting
 
 ## Motivation & Background
 
@@ -60,12 +61,42 @@ The final solution should look like this
 ├── LICENSE
 ├── README.md
 ├── coverage.xml
-├── data
-│   └── Parking_Violations_Issued_in_August_2018.csv
+│   ├── cleaned
+│   │   ├── April_2018.csv
+│   │   ├── August_2018.csv
+│   │   ├── December_2018.csv
+│   │   ├── February_2018.csv
+│   │   ├── January_2018.csv
+│   │   ├── July_2018.csv
+│   │   ├── June_2018.csv
+│   │   ├── March_2018.csv
+│   │   ├── May_2018.csv
+│   │   ├── November_2018.csv
+│   │   ├── October_2018.csv
+│   │   └── September_2018.csv
+│   ├── config
+│   │   └── parking_data.json
+│   ├── final
+│   │   └── all_cleaned.csv
+│   ├── incoming
+│   │   ├── April_2018.csv
+│   │   ├── August_2018.csv
+│   │   ├── December_2018.csv
+│   │   ├── February_2018.csv
+│   │   ├── January_2018.csv
+│   │   ├── July_2018.csv
+│   │   ├── June_2018.csv
+│   │   ├── March_2018.csv
+│   │   ├── May_2018.csv
+│   │   ├── November_2018.csv
+│   │   ├── October_2018.csv
+│   │   └── September_2018.csv
+│   └── sample
+│       └── Parking_Violations_Issued_in_August_2018.csv
 ├── env.sh
 ├── environment.yaml
 ├── notebooks
-│   ├── Cleaning,\ Preparation\ and\ Modeling.ipynb
+│   ├── Cleaning\ and\ Preparation.ipynb
 │   ├── EDA.ipynb
 │   ├── Getting\ Data.ipynb
 │   ├── Models.ipynb
@@ -73,6 +104,9 @@ The final solution should look like this
 ├── scripts
 │   ├── __init__.py
 │   ├── api.py
+│   ├── cleaning.py
+│   ├── main.py
+│   ├── model.py
 │   └── utils.py
 └── tests
     ├── test_api.py
@@ -91,7 +125,7 @@ chmod +x ./env.sh
 source ./env.sh
 ```
 
-The shell script will build a `data` directory and create a conda environment `burgwyn_data601_final`
+The shell script will build a `data` directory, create a conda environment `burgwyn_data601_final` and fetch and clean the data.
 
 ## Project Info
 
