@@ -4,7 +4,7 @@ import numpy as np
 
 from utils import display_scores
 
-features = ['LATITUDE', 'LONGITUDE', 'DAY_OF_MONTH', 'HOUR']
+features = ['LATITUDE', 'LONGITUDE', 'MONTH', 'DAY_OF_MONTH', 'HOUR']
 
 # establish data for classification
 X = parking_violations[features]  # noqa F821
