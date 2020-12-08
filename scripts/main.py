@@ -2,6 +2,7 @@ import os.path
 import json
 import urllib.request
 import pandas as pd
+import glob
 from api import do_search
 from cleaning import clean_data
 
@@ -35,3 +36,14 @@ for key in parking_data.keys():
 
         cleaned = clean_data(data)
         cleaned.to_csv(f'data/cleaned/{file_name}.csv', index=False)
+
+cleaned_files = glob.glob('data/cleaned/*.csv')
+
+all_cleaned = []
+
+for filename in cleaned_files:
+    df = pd.read_csv(filename)
+    all_cleaned.append(df)
+
+df_cleaned = pd.concat(all_cleaned, axis=0, ignore_index=True)
+df_cleaned.to_csv('data/final/all_cleaned.csv', index=False)
