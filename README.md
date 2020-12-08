@@ -81,6 +81,7 @@ The final solution should look like this
 │   │   └── parking_data.json
 │   ├── final
 │   │   └── all_cleaned.csv
+│   │   └── final_model.pkl
 │   ├── incoming
 │   │   ├── April_2018.csv
 │   │   ├── August_2018.csv
