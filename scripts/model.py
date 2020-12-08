@@ -78,38 +78,38 @@ print('Score - Test: {:f}'.format(mlp_clf.score(X_test, y_test)))
 from sklearn.model_selection import cross_val_score  # noqa E402
 
 log_reg_scores = cross_val_score(log_reg, X, y,
-                                 scoring="neg_mean_squared_error", cv=10)
+                                 scoring="neg_mean_squared_error")
 log_reg_rmse_scores = np.sqrt(-log_reg_scores)
 display_scores('Logistic Regression', log_reg_rmse_scores)
 
 passive_aggressive_clf_scores =\
-    cross_val_score(passive_aggressive_clf, X, y, cv=10,
+    cross_val_score(passive_aggressive_clf, X, y,
                     scoring="neg_mean_squared_error")
 passive_aggressive_clf_rmse_scores = np.sqrt(-passive_aggressive_clf_scores)
 display_scores('Passive Aggressive', passive_aggressive_clf_rmse_scores)
 
 tree_clf_scores = cross_val_score(tree_clf, X, y,
-                                  scoring="neg_mean_squared_error", cv=10)
+                                  scoring="neg_mean_squared_error")
 tree_clf_rmse_scores = np.sqrt(-tree_clf_scores)
 display_scores('Decision Tree', tree_clf_rmse_scores)
 
 ridge_clf_scores = cross_val_score(ridge_clf, X, y,
-                                   scoring="neg_mean_squared_error", cv=10)
+                                   scoring="neg_mean_squared_error")
 ridge_clf_rmse_scores = np.sqrt(-ridge_clf_scores)
 display_scores('Ridge', ridge_clf_rmse_scores)
 
 forest_clf_scores = cross_val_score(forest_clf, X, y,
-                                    scoring="neg_mean_squared_error", cv=10)
+                                    scoring="neg_mean_squared_error")
 forest_clf_rmse_scores = np.sqrt(-forest_clf_scores)
 display_scores('Forest', forest_clf_rmse_scores)
 
 ada_clf_scores = cross_val_score(ada_clf, X, y,
-                                 scoring="neg_mean_squared_error", cv=10)
+                                 scoring="neg_mean_squared_error")
 ada_clf_rmse_scores = np.sqrt(-ada_clf_scores)
 display_scores('AdaBoost', ada_clf_rmse_scores)
 
 mlp_clf_scores = cross_val_score(mlp_clf, X, y,
-                                 scoring="neg_mean_squared_error", cv=10)
+                                 scoring="neg_mean_squared_error")
 mpl_clf_rmse_scores = np.sqrt(-mlp_clf_scores)
 display_scores('MLP', mpl_clf_rmse_scores)
 
