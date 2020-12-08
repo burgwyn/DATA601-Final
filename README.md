@@ -2,6 +2,9 @@
 
 ## Overview
 
+Explore parking violation data from Washington, DC and build a classifier
+
+<img src="https://github.com/burgwyn/DATA601-Final/blob/main/images/map-plot.png" alt="Plot of Washington, DC" />
 
 ## Goals
 
